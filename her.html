@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shweta 💖</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  background: radial-gradient(circle at top, #ff7eb3, #b8005c 70%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* Card */
+.card{
+  width:90%;
+  max-width:420px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter: blur(18px);
+  border-radius:30px;
+  padding:35px 25px 40px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  text-align:center;
+  animation: slideUp 1.4s ease;
+}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:#fff;
+  font-size:2.3rem;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  color:#ffe6f2;
+  font-size:0.95rem;
+  margin-bottom:22px;
+}
+
+/* Letter */
+.letter{
+  background:rgba(255,255,255,0.9);
+  color:#3b0020;
+  border-radius:20px;
+  padding:18px;
+  font-size:1.05rem;
+  line-height:1.7;
+  min-height:170px;
+  margin-bottom:28px;
+}
+
+/* Buttons */
+.actions{
+  position:relative;
+  height:70px;
+}
+
+button{
+  border:none;
+  border-radius:30px;
+  padding:12px 34px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+#yes{
+  background:linear-gradient(135deg,#ff1f7a,#b8005c);
+  color:#fff;
+  box-shadow:0 14px 30px rgba(184,0,92,0.55);
+}
+
+#yes:hover{
+  transform:scale(1.12);
+}
+
+#no{
+  background:#fff;
+  color:#b8005c;
+  position:absolute;
+  left:58%;
+}
+
+/* Final screen */
+.final{
+  font-family:'Playfair Display',serif;
+  color:#fff;
+  font-size:1.15rem;
+  line-height:1.9;
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  font-size:22px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(100vh);opacity:0;}
+  10%{opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5cddc0b32d.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+  <h1>Shweta 💖</h1>
+  <div class="subtitle">Something I’ve been meaning to tell you…</div>
+
+  <div class="letter" id="typing"></div>
+
+  <div class="actions">
+    <button id="yes">Yes 💕</button>
+    <button id="no">No 🙈</button>
+  </div>
+</div>
+
+<script>
+/* Typing Effect */
+const message = `Dear Shweta,
+
+I didn’t plan this.
+But somewhere between simple conversations
+and quiet moments,
+you slowly became my comfort.
+
+You make ordinary days feel lighter,
+and smiles come easier.
+
+So today, with honesty and a hopeful heart,
+I just want to ask you…
+
+Will you be my Valentine? ❤️`;
+
+let index = 0;
+const speed = 38;
+const typingBox = document.getElementById("typing");
+
+function typeText(){
+  if(index < message.length){
+    typingBox.innerHTML += message.charAt(index);
+    index++;
+    setTimeout(typeText, speed);
+  }
+}
+typeText();
+
+/* No Button Run */
+const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", ()=>{
+  const x = Math.random()*200 - 100;
+  const y = Math.random()*120 - 60;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+/* Yes Click */
+document.getElementById("yes").addEventListener("click", ()=>{
+  document.getElementById("card").innerHTML = `
+    <div class="final">
+      She said YES 💍💖<br><br>
+      This isn’t just a moment,<br>
+      it’s the start of something beautiful.<br><br>
+      Thank you for choosing me, Shweta.<br>
+      I promise to always choose you 🌹
+    </div>
+  `;
+  hearts();
+});
+
+/* Hearts */
+function hearts(){
+  for(let i=0;i<40;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+</script>
+
+</body>
+</html>
